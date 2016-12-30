@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Sumit's chat Application</title>
+    <title>Sumit's chat</title>
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
       body { font: 13px Helvetica, Arial; }
@@ -16,7 +16,7 @@
   <body>
     <ul id="messages"></ul>
     <form action="">
-      <input id="m" autocomplete="off" onkeyup="notifyTyping();" placeholder="Type yor message here.." /><button>Send</button>
+      <input id="m" autocomplete="off" /><button>Send</button>
     </form>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
@@ -31,22 +31,10 @@
         // call the server-side function 'adduser' and send one parameter (value of prompt)
         socket.emit('adduser', prompt("What's your name?"));
       });
-
-      socket.on('updatechat', function (username, data) {
-        $('#conversation').append('<b>'+username + ':</b> ' + data + '<br>');
-      });
-      // socket.on('notifyUser', function(user){
-      //   var me = $('#user').val();
-      //   if(user != me) {
-      //     $('#notifyUser').text(user + ' is typing ...');
-      //   }
-      //   setTimeout(function(){ $('#notifyUser').text(''); }, 10);;
-      // });
- 
       socket.on('chat message', function(msg){
         $('#messages').append($('<li>').text(msg));
       });
-
     </script>
   </body>
 </html>
+ 
